@@ -1,39 +1,14 @@
-var slides = [
+class Inquire {
+    constructor (index,question,response,answer) {
+        this.index = index;
+        this.inquire = inquire;
+        this.response = response;
+        this.answer = answer;
+    }
+}
 
-{
-    index: 1,
-    question: 'Commonly used data types do not include:',
-    response: ['strings','booleans','alerts','numbers'],
-    answer: 'alerts',
-},
-
-{
-    index: 2,
-    question: 'The condition in an if / else statement is enclosed with _____________.',
-    response: ['quotes','curly brackets','parenthesis','square brackets'],
-    answer: 'parenthesis',
-},
-
-{
-    index: 3,
-    question: 'Arrays in Javascript can be used to store ________________.',
-    response: ['numbers and strings','other arrays','booleans','all of the above'],
-    answer: 'other arrays',
-},
-
-{
-    index: 4,
-    question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
-    response: ['javascript','terminal / bash','for loops','console.log'],
-    answer: 'console.log',
-},
-
-{
-    index: 5,
-    qestion: 'String values must be enclosed within ___________ when being assigned to variables.',
-    response: ['commas','curly brackets','quotes','parenthesis'],
-    answer: 'commas',
-},
-
-
-];
+var inquire1 = new Inquire(1,'Commonly used data types do not include:', ['strings','booleans','alerts','numbers'],3);
+var inquire2 = new Inquire(2,'The condition in an if / else statement is enclosed with _____________.',['quotes','curly brackets','parenthesis','square brackets'],3);
+var inquire3 = new Inquire(3,'Arrays in Javascript can be used to store ________________.',['numbers and strings','other arrays','booleans','all of the above'],2);
+var inquire4 = new Inquire(4,'A very useful tool used during development and debugging for printing content to the debugger is:',['javascript','terminal / bash','for loops','console.log'],4);
+var inquire5 = new Inquire(5,'String values must be enclosed within ___________ when being assigned to variables.',['commas','curly brackets','quotes','parenthesis'],1);

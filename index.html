@@ -23,23 +23,15 @@
         </div>
     </header>
     <main>
-        <section class="intro" id="introductions" style="display: block;">
+        <section class="intro" id="introduction" style="display: block;">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                 answers will penalize your score / time by ten seconds!</p>
             <button type="button" class="btn-start" id="startquiz">Start Quiz</button>
         </section>
-        <section class="question" id="questions" style="display: none;">
-            <div>
-                <h1>Question</h1>
-            </div>
-            <div>
-                <ol>
-
-                </ol>
-               
-                <!--    <button type="button" class="btn-response questions" id="response">qqq</button> -->  
-            </div>
+        <section class="quizItems" id="quiz" style="display: none;">
+                <h1 id ="question"></h1>
+                <ul id="responses"></ul>
         </section>
         <section class="score" id="yourscore" style="display: none;">
             <button type="button" class="btn-submit" id="submitname">submit</button>
@@ -50,7 +42,7 @@
         </section>
     </main>
     <script src="./assets/js/global.js"></script>
-    <script src="./assets/js/quiz.js"></script>
+  <!--  <script src="./assets/js/quiz.js"></script> -->
     <script src="./assets/js/script.js"></script>
 </body>
 

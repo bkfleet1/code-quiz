@@ -70,7 +70,7 @@
       color: var(--color-white);
       font-size: 1.4vw;
       padding: 3px;
-      margin:5px;
+      margin:3px;
       border-radius: 3px;
       border: none;
       align-items: center;
@@ -82,7 +82,11 @@
     color: var(--color-black);
   }
 
-  .btn-response {
-      width: 350px;
+li {
+  list-style-type: none;
+}
+
+li button {
+      width: 150px;
       text-align: start;
   }
