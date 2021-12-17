@@ -19,20 +19,34 @@
             </a>
         </div>
         <div class="header-right">
-            time: 0
+            time: <span id="time"></span>
         </div>
-       </header>
+    </header>
     <main>
-        <div class="questions" id="question">
-                Question
-        </div>
-        <div id="slider">
-            <button type="button" class="btn-start">Start Quiz</button>
-            <button type="button" class="btn-response">qqq</button>
-            <button type="button" class="btn-submit">submit</button>
-            <button type="button" class="btn-back">go back</button>
-            <button type="button" class="btn-clear">clear high scores</button>
+        <section class="intro" id="introductions" style="display: block;">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                answers will penalize your score / time by ten seconds!</p>
+            <button type="button" class="btn-start" id="startquiz">Start Quiz</button>
+        </section>
+        <section class="question" id="questions" style="display: none;">
+            <div>
+                <h1>Question</h1>
             </div>
+            <div>
+                <ol>
+
+                </ol>
+               
+                <!--    <button type="button" class="btn-response questions" id="response">qqq</button> -->  
+            </div>
+        </section>
+        <section class="score" id="yourscore" style="display: none;">
+            <button type="button" class="btn-submit" id="submitname">submit</button>
+            <button type="button" class="btn-back" id="goback">go back</button>
+        </section>
+        <section class="highscore" id="highscores" style="display: none;">
+            <button type="button" class="btn-clear" id="clearscore">clear high scores</button>
         </section>
     </main>
     <script src="./assets/js/global.js"></script>

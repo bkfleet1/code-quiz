@@ -1,36 +1,52 @@
-var timeRemaining = 75; //initial quiz time. 15 seconds per slide
-var index = 0; //current slide
-var timePenalty = 5; // penalty for wrong answer to question
-
-console.log(slides);
-
-startButton.addEventListener('click',startQuiz)
-
-
-
+let timeRemaining = 75; //initial quiz time. 15 seconds per slide
+let index = 0; //current slide
+let timePenalty = 5; // penalty for wrong answer to question
+//document.getElementById("time").textContent = timeRemaining;
 
 //Start Button & event listener
-start_button.addEventListener('click', function(e) {
-    startTimer();
+startButton.addEventListener("click", function () {
+    startCountdown();
+    hideIntro();
+    showQuestions();
 });
 
-function startTimer() {
-// slider()
-timer = setInterval(function() {
+/*
+function(e) {
+    startTimer();
+}); */
+
+var countdown = function () {
     console.log(timeRemaining);
-    timer.textContent = timeRemaining
-    timeRemaining --;
-    if (timeRemaining % 5 === 0) {
-        index++;
-        slider()
+    time.textContent = timeRemaining;
+    timeRemaining--;
+    if (timeRemaining <= 0) {
+        alert("Game Over")
+        clearInterval(startCountdown);
+        //    endQuiz();
     }
-  }, 1000)
+
 };
 
-function slider () {
-    slider.textContent = JSON.stringify(slides[index]);
-    if (timeRemaining === 0) {
-        clearInterval(timer);
-        index = 0;
-    }
+var startCountdown = function () {
+    setInterval(countdown, 1000);
 };
+
+
+//Show and Hide Sections
+function showQuestions() {
+    var x = document.getElementById("questions");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  function hideIntro() {
+    var x = document.getElementById("introductions");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
