@@ -3,13 +3,12 @@ let index = 0; //current slide
 let timePenalty = 5; // penalty for wrong answer to question
 let currentQuizItems = 0;
 
+
 //Start Button & event listener
 startButton.addEventListener("click", function () {
+  displayQuizSection();
+  displayQuestions();
   startCountdown();
-  //   hideIntroSection();
-  showQuizSection();
-  displayInquiry();
-  displayResponses();
 });
 
 
@@ -17,8 +16,12 @@ var countdown = function () {
   console.log(timeRemaining);
   time.textContent = timeRemaining;
   timeRemaining--;
-  if (timeRemaining <= 0) {
+  if (parseInt(timeRemaining) <= 0) {
     clearInterval(startCountdown);
+    timeRemaining=0
+    localStorage.setItem("timeRemaining", JSON.stringify(timeRemaining));
+    endQuiz();
+
   }
 };
 
@@ -29,7 +32,7 @@ var startCountdown = function () {
 
 
 //Show and Hide Sections
-function showQuizSection() {
+function displayQuizSection() {
   var x = document.getElementById("quiz");
   if (x.style.display === "none") {
     x.style.display = "block";
@@ -42,7 +45,7 @@ function showQuizSection() {
   } else {
     x.style.display = "none";
   }
-}
+};
 
 // Questions
 class quizItems {
@@ -60,6 +63,13 @@ var inquire4 = new quizItems('A very useful tool used during development and deb
 var inquire5 = new quizItems('String values must be enclosed within ___________ when being assigned to variables.', ['commas', 'curly brackets', 'quotes', 'parenthesis'], 0);
 var quizItemsList = [inquire1, inquire2, inquire3, inquire4, inquire5];
 
+
+function displayQuestions() {
+  displayInquiry();
+  displayResponses();
+}
+
+
 function displayInquiry() {
   question.textContent = quizItemsList[currentQuizItems].question;
   
@@ -69,11 +79,60 @@ function displayResponses() {
   responses.innerHTML = "";
   quizItemsList[currentQuizItems].response.forEach (function (response, index) {
     var li = document.createElement("li");
-    li.dataset.index = index;
     var button = document.createElement("button");
+    button.dataset.index = index;
     button.textContent = (index + 1) + ". " + response;
     li.appendChild(button);
     responses.appendChild(li);
-  });
+    });
+    
 }
 
+$ ('ul').on('click','li',function(event) {
+   if ((parseInt(event.target.dataset.index)) == quizItemsList[currentQuizItems].answer) {
+  } else 
+    timeRemaining -= 10;
+  if (timeRemaining <= 0) {
+      endQuiz();
+  } else
+
+  nextQuestion();
+});
+
+ 
+
+ function nextQuestion () {
+  alert("hey");
+//  quizItemsList++;
+
+
+ // if (index >= currentQuizItems) {
+ //   localStorage.setItem("timeRemaining", JSON.stringify(timeRemaining));  
+ //   endQuiz();
+ //} else {
+   displayQuestions();
+// }
+};
+
+ function endQuiz() {
+  displayScore();
+};
+
+
+ function displayScore() {
+ {
+  var x = document.getElementById("yourscore");
+    x.style.display = "block";
+ }
+ {
+ var x = document.getElementById("quiz");
+ x.style.display = "none";
+ }
+};
+
+
+
+//  localStorage.setItem("q1timeRemaining", JSON.stringify(timeRemaining));
+
+// console.log("q1",event.target.dataset.index);
+//  localStorage.setItem("q1response", JSON.stringify(event.target.dataset.index));
