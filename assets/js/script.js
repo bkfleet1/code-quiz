@@ -1,7 +1,9 @@
 let timeRemaining = 75; //initial quiz time. 15 seconds per slide
-let index = 0; //current slide
+let index = 0;
 let timePenalty = 5; // penalty for wrong answer to question
-let currentQuizItems = 0;
+let currentQuizItems = 0; //current slide
+let timeElapsed = Date.now();
+let today = new Date(timeElapsed);
 
 
 //Start Button & event listener
@@ -13,15 +15,10 @@ startButton.addEventListener("click", function () {
 
 
 var countdown = function () {
-  console.log(timeRemaining);
   time.textContent = timeRemaining;
   timeRemaining--;
   if (parseInt(timeRemaining) <= 0) {
-    clearInterval(startCountdown);
-    timeRemaining=0
-    localStorage.setItem("timeRemaining", JSON.stringify(timeRemaining));
-    endQuiz();
-
+     endQuiz();
   }
 };
 
@@ -93,7 +90,7 @@ $ ('ul').on('click','li',function(event) {
   } else 
     timeRemaining -= 10;
   if (timeRemaining <= 0) {
-      endQuiz();
+     endQuiz();
   } else
 
   nextQuestion();
@@ -102,24 +99,27 @@ $ ('ul').on('click','li',function(event) {
  
 
  function nextQuestion () {
-  alert("hey");
-//  quizItemsList++;
-
-
- // if (index >= currentQuizItems) {
- //   localStorage.setItem("timeRemaining", JSON.stringify(timeRemaining));  
- //   endQuiz();
- //} else {
+  currentQuizItems++;
+  if (currentQuizItems > 4 && timeRemaining > 0) {
+    localStorage.setItem("score", JSON.stringify(timeRemaining));
+    endQuiz();
+  } else {
    displayQuestions();
-// }
+  }
 };
-
+var loadScore = function() {
+  score = JSON.parse(localStorage.getItem("score"));
+  document.getElementById("currentScore").textContent=score;
+};
+  
  function endQuiz() {
-  displayScore();
+  displayScoreSection();
+  loadScore();
+
 };
 
 
- function displayScore() {
+ function displayScoreSection() {
  {
   var x = document.getElementById("yourscore");
     x.style.display = "block";
@@ -128,6 +128,11 @@ $ ('ul').on('click','li',function(event) {
  var x = document.getElementById("quiz");
  x.style.display = "none";
  }
+ {
+  var x = document.getElementById("time");
+  x.style.display = "none";
+  }
+
 };
 
 
@@ -136,3 +141,4 @@ $ ('ul').on('click','li',function(event) {
 
 // console.log("q1",event.target.dataset.index);
 //  localStorage.setItem("q1response", JSON.stringify(event.target.dataset.index));
+//  localStorage.setItem("score", JSON.stringify(timeRemaining));  
