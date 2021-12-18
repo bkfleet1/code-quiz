@@ -87,8 +87,10 @@ function displayResponses() {
 
 $ ('ul').on('click','li',function(event) {
    if ((parseInt(event.target.dataset.index)) == quizItemsList[currentQuizItems].answer) {
+ //   document.getElementById("validation1") = "Correct!";
   } else 
     timeRemaining -= 10;
+//    document.getElementById("validation2") = "Wrong!";
   if (timeRemaining <= 0) {
      endQuiz();
   } else
@@ -135,7 +137,13 @@ var loadScore = function() {
 
 };
 
+backButton.addEventListener("click", function () {
+  refreshPage();
+});
 
+var refreshPage = function() {
+  location.reload();
+};
 
 //  localStorage.setItem("q1timeRemaining", JSON.stringify(timeRemaining));
 

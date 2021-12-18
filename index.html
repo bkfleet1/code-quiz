@@ -32,14 +32,17 @@
         <section class="quizItems" id="quiz" style="display: none;">
                 <h1 id ="question"></h1>
                 <ul id="responses"></ul>
+                <div><span class="correct" id="validation1"></span></div>
+                <div><span class="wrong" id="validation2"></span></div>
         </section>
         <section class="score" id="yourscore" style="display: none;">
             <H1>All done!</H1>
             <div class="scorePresent">
                 Your final score is <span id="currentScore"></span>
             </div>
+
+            <button type="button" class="btn-back" id="goBack">go back</button>
             <button type="button" class="btn-submit" id="submitname">submit</button>
-            <button type="button" class="btn-back" id="goback">go back</button>
         </section>
         <section class="highscore" id="highscores" style="display: none;">
             <button type="button" class="btn-clear" id="clearscore">clear high scores</button>

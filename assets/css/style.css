@@ -90,3 +90,17 @@ li button {
       width: 150px;
       text-align: start;
   }
+
+  .wrong {
+    font-size: 2.2vw;
+    font-weight: bold;
+    text-align: center;
+    color: crimson;
+  }
+
+  .correct {
+    font-size: 2.2vw;
+    font-weight: bold;
+    text-align: center;
+    color:chartreuse;
+  }
