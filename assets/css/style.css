@@ -87,7 +87,7 @@ li {
 }
 
 li button {
-      width: 350px;
+      width: 40%;
       text-align: start;
       flex-wrap: nowrap;
   }
