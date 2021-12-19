@@ -89,6 +89,7 @@ li {
 li button {
       width: 350px;
       text-align: start;
+      flex-wrap: nowrap;
   }
 
   .wrong {
