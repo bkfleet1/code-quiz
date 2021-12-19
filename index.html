@@ -13,44 +13,49 @@
 
 <body>
     <header>
+<!-- high score link -->     
         <div class="header-left">
             <a href="/">
                 view high scores
             </a>
         </div>
+<!-- timeRemaining -->
         <div class="header-right">
             time: <span id="time" style="display: block;"></span>
         </div>
     </header>
+
     <main>
+<!-- introduction section -->
         <section class="intro" id="introduction" style="display: block;">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                 answers will penalize your score / time by ten seconds!</p>
             <button type="button" class="btn-start" id="startquiz">Start Quiz</button>
         </section>
+<!-- quiz section -->
         <section class="quizItems" id="quiz" style="display: none;">
                 <h1 id ="question"></h1>
                 <ul id="responses"></ul>
-                <div><span class="correct" id="validation1"></span></div>
-                <div><span class="wrong" id="validation2"></span></div>
         </section>
+<!-- score section -->
         <section class="score" id="yourscore" style="display: none;">
             <H1>All done!</H1>
             <div class="scorePresent">
                 Your final score is <span id="currentScore"></span>
             </div>
-
             <button type="button" class="btn-back" id="goBack">go back</button>
             <button type="button" class="btn-submit" id="submitname">submit</button>
         </section>
+<!-- high score section -->
         <section class="highscore" id="highscores" style="display: none;">
             <button type="button" class="btn-clear" id="clearscore">clear high scores</button>
         </section>
     </main>
+    
+<!-- javascript setion -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/global.js"></script>
-  <!--  <script src="./assets/js/quiz.js"></script> -->
     <script src="./assets/js/script.js"></script>
 </body>
 

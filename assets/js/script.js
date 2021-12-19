@@ -1,12 +1,13 @@
+// variables
 let timeRemaining = 75; //initial quiz time. 15 seconds per slide
 let index = 0;
 let timePenalty = 5; // penalty for wrong answer to question
-let currentQuizItems = 0; //current slide
-let timeElapsed = Date.now();
-let today = new Date(timeElapsed);
+let currentQuizItems = 0; //current quiz question
+let timeElapsed = Date.now(); //date time
+let today = new Date(timeElapsed); // date time
 
 
-//Start Button & event listener
+// start Button & event listener
 startButton.addEventListener("click", function () {
   displayQuizSection();
   displayQuestions();
@@ -14,11 +15,14 @@ startButton.addEventListener("click", function () {
 });
 
 
+// time timeRemaining > quiz timer
 var countdown = function () {
-  time.textContent = timeRemaining;
+   time.textContent = timeRemaining;
   timeRemaining--;
   if (parseInt(timeRemaining) <= 0) {
-     endQuiz();
+    timeRemaining=0;
+    localStorage.setItem("score", JSON.stringify(timeRemaining));
+    endQuiz();
   }
 };
 
@@ -27,8 +31,7 @@ var startCountdown = function () {
 };
 
 
-
-//Show and Hide Sections
+// hide introduction section & show quiz section
 function displayQuizSection() {
   var x = document.getElementById("quiz");
   if (x.style.display === "none") {
@@ -44,7 +47,8 @@ function displayQuizSection() {
   }
 };
 
-// Questions
+
+// quiz questions
 class quizItems {
   constructor(question, response, answer) {
     this.question = question;
@@ -61,92 +65,97 @@ var inquire5 = new quizItems('String values must be enclosed within ___________ 
 var quizItemsList = [inquire1, inquire2, inquire3, inquire4, inquire5];
 
 
+// display quiz questions
 function displayQuestions() {
   displayInquiry();
   displayResponses();
 }
 
 
+// display question
 function displayInquiry() {
   question.textContent = quizItemsList[currentQuizItems].question;
-  
 }
 
+
+// display question response options
 function displayResponses() {
   responses.innerHTML = "";
-  quizItemsList[currentQuizItems].response.forEach (function (response, index) {
+  quizItemsList[currentQuizItems].response.forEach(function (response, index) {
     var li = document.createElement("li");
     var button = document.createElement("button");
     button.dataset.index = index;
     button.textContent = (index + 1) + ". " + response;
     li.appendChild(button);
     responses.appendChild(li);
-    });
-    
+  });
 }
 
-$ ('ul').on('click','li',function(event) {
-   if ((parseInt(event.target.dataset.index)) == quizItemsList[currentQuizItems].answer) {
- //   document.getElementById("validation1") = "Correct!";
-  } else 
-    timeRemaining -= 10;
-//    document.getElementById("validation2") = "Wrong!";
-  if (timeRemaining <= 0) {
-     endQuiz();
-  } else
 
-  nextQuestion();
+// check user question response; penalize 10 seconds if wrong; end quiz if insufficient time.  
+$('ul').on('click', 'li', function (event) {
+  if ((parseInt(event.target.dataset.index)) == quizItemsList[currentQuizItems].answer) {
+  } else
+    timeRemaining -= 10;
+  if (timeRemaining <= 0) {
+    timeRemaining=0;
+    localStorage.setItem("score", JSON.stringify(timeRemaining));
+    endQuiz();
+  } else
+    nextQuestion();
 });
 
- 
 
- function nextQuestion () {
+// next question. if last question response then go to end quiz, else display question
+function nextQuestion() {
   currentQuizItems++;
   if (currentQuizItems > 4 && timeRemaining > 0) {
     localStorage.setItem("score", JSON.stringify(timeRemaining));
     endQuiz();
   } else {
-   displayQuestions();
+    displayQuestions();
   }
 };
-var loadScore = function() {
+
+
+// load score
+var loadScore = function () {
   score = JSON.parse(localStorage.getItem("score"));
-  document.getElementById("currentScore").textContent=score;
+  document.getElementById("currentScore").textContent = score;
 };
-  
- function endQuiz() {
+
+
+// end quiz and show score
+function endQuiz() {
   displayScoreSection();
   loadScore();
 
 };
 
 
- function displayScoreSection() {
- {
-  var x = document.getElementById("yourscore");
+// display score section & hide quiz section and timeRemaining
+function displayScoreSection() {
+  {
+    var x = document.getElementById("yourscore");
     x.style.display = "block";
- }
- {
- var x = document.getElementById("quiz");
- x.style.display = "none";
- }
- {
-  var x = document.getElementById("time");
-  x.style.display = "none";
   }
-
+  {
+    var x = document.getElementById("quiz");
+    x.style.display = "none";
+  }
+  {
+    var x = document.getElementById("time");
+    x.style.display = "none";
+  }
 };
 
+
+// backButton refreshes page back to introduction section.
 backButton.addEventListener("click", function () {
   refreshPage();
 });
 
-var refreshPage = function() {
+var refreshPage = function () {
   location.reload();
 };
 
-//  localStorage.setItem("q1timeRemaining", JSON.stringify(timeRemaining));
-
-// console.log("q1",event.target.dataset.index);
-//  localStorage.setItem("q1response", JSON.stringify(event.target.dataset.index));
-//  localStorage.setItem("score", JSON.stringify(timeRemaining));  
